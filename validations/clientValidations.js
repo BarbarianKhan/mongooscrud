@@ -6,7 +6,8 @@ const ClientValidation = Joi.object({
     company:Joi.string().required(),
     genre:Joi.string().required(),
     address:Joi.string().required(),
-    phoneNumber:Joi.number().required()
+    phoneNumber:Joi.number().required(),
+    user_id:Joi.string().required()
 });
 
 module.exports= ClientValidation;

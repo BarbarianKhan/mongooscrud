@@ -2,6 +2,7 @@ const User = require('../schemas/users');
 const Client = require("../schemas/clients");
 const Product = require("../schemas/products");
 const Order = require("../schemas/orders");
+const UserService = require('../services/user.service');
 const multer = require("multer");
 
 const createUser = async (req,res) =>{
@@ -16,9 +17,9 @@ const createUser = async (req,res) =>{
 
 const createClient = async (req,res)=>{
     try {
-        let data = new Client(req.body);
-        let result = await data.save();
+        let result= UserService.createUser(req,res);
         res.send(result);
+
     } catch (error) {
         res.status(500).json({ error:error.errors });
     }
