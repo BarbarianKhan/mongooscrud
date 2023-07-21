@@ -48,6 +48,8 @@ routes.post("/uploadFile",orderController.FileUpload,(req,res)=>{
 routes.post('/login',validateData(loginValidation),authController.userLogin);
 routes.post('/logout',authController.logout);
 
+routes.get('/updateShippingAddress/:orderID',orderController.updateShippingAddress);
+
 routes.get('/accessResource', (req, res)=>{  
     const token = req.headers.authorization.split(' ')[1]; 
     //Authorization: 'Bearer TOKEN'

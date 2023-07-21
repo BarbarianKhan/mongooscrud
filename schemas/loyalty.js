@@ -30,7 +30,11 @@ const productSchema = new mongoose.Schema({
     expiry_date:{
         type:Date,
         required:true
-    }
+    },
+    order_id:{
+        type:mongoose.Schema.Types.ObjectId,
+        required:true,
+    },
 });
 
 const LoyaltyPoints = mongoose.model('loyalty_points',productSchema);

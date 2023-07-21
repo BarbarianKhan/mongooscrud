@@ -8,12 +8,12 @@ const authMiddleware = (req, res, next) => {
   }
 
   try {
-    const decoded = jwt.verify(token, 'your_secret_key'); // Verify and decode the token
+    const decoded = jwt.verify(token, 'aixinvestmentgroup'); // Verify and decode the token
     req.userId = decoded.userId; // Attach the decoded user ID to the request
     next();
   } catch (error) {
     console.error('Error during token verification:', error);
-    res.status(401).json({ error: 'Invalid token' });
+    res.status(401).json( error );
   }
 };
 

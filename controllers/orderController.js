@@ -189,6 +189,14 @@ const addLoyaltyPoints = async (req,res)=>{
             res.status(500).json({ error:error.errors });
         }
 };
+
+const updateShippingAddress  = async (req,res)=>{
+    let result = await Order.updateOne(
+                                    req.params,
+                                    { $set: { "shippingAddress.street": "123 main street" } }
+                                );
+        res.send(result);
+}
 module.exports = {
     getAllOrders,
     getagg,
@@ -197,5 +205,6 @@ module.exports = {
     getUserByCat,
     getClients,
     FileUpload,
-    addLoyaltyPoints
+    addLoyaltyPoints,
+    updateShippingAddress
 };

@@ -20,7 +20,7 @@ const userLogin = async (req,res,next)=>{
         //Creating jwt token
         token = jwt.sign(
         { userId: existingUser.id, email: existingUser.email },
-        "secretkeyappearshere",
+        "aixinvestmentgroup",
         { expiresIn: "2h" }
         );
     } catch (err) {
@@ -39,7 +39,7 @@ const userLogin = async (req,res,next)=>{
 };
 
 const logout = async (req,res,next)=>{
-
+    res.json({ message: 'Logged out successfully' });
 };
 module.exports = {
     userLogin,
