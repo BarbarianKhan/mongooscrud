@@ -21,7 +21,7 @@ const seasonSchema = new mongoose.Schema({
     }
 });
 
-const Season = mongoose.model('episopes',seasonSchema);
+const Season = mongoose.model('seasons',seasonSchema);
 
 module.exports = Season;
  

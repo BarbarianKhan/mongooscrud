@@ -29,7 +29,7 @@ const sceneSchema = new mongoose.Schema({
     }
 });
 
-const Scene = mongoose.model('episopes',sceneSchema);
+const Scene = mongoose.model('scenes',sceneSchema);
 
 module.exports = Scene;
  
