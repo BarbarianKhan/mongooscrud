@@ -65,4 +65,7 @@ routes.get('/accessResource', (req, res)=>{
 
 routes.get('/getSeasons',GOTController.getSeasons);
 
+routes.get('/sendMail',MainController.sendEmailUser);
+
+
 module.exports = routes; 

@@ -4,6 +4,7 @@ const Product = require("../schemas/products");
 const Order = require("../schemas/orders");
 const UserService = require('../services/user.service');
 const multer = require("multer");
+const transporter = require('../config/emailConfig');
 
 class MainController
 {
@@ -132,6 +133,31 @@ class MainController
         } catch (error) {
             res.status(500).json({ error: 'Failed to get users' });
         }
+    };
+
+    sendEmailUser = async (req,res)=>{
+         
+        const { to, subject, text } = req.body;
+
+        // Email options
+        const mailOptions = {
+            from: 'your_email@example.com', // Your email address
+            to: 'your_email@example.com',                         // Recipient's email address
+            subject: 'Express Delivery Email subject',               // Email subject
+            html: '<p>Text</p>',                     // Email content (text version)
+            // You can also use `html` property to send an HTML-formatted email content
+        };
+
+        // Send the email
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+            console.log('Error sending email:', error);
+            res.status(500).json({ error: 'Error sending email' });
+            } else {
+            console.log('Email sent:', info.response);
+            res.status(200).json({ message: 'Email sent successfully' });
+            }
+        });
     };
 }
 module.exports= new MainController();
