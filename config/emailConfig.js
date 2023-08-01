@@ -1,5 +1,6 @@
 
 const nodemailer = require('nodemailer');
+const hbs = require('nodemailer-express-handlebars');
 
 // Create a transporter to send emails
 // const transporter = nodemailer.createTransport({

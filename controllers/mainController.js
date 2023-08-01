@@ -149,6 +149,7 @@ class MainController
         };
 
         // Send the email
+        
         transporter.sendMail(mailOptions, (error, info) => {
             if (error) {
             console.log('Error sending email:', error);
