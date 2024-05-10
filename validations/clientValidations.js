@@ -7,6 +7,8 @@ const ClientValidation = Joi.object({
     genre:Joi.string().required(),
     address:Joi.string().required(),
     phoneNumber:Joi.number().required(),
+    category:Joi.string().required(),
+    designation:Joi.string().required(),
     user_id:Joi.string().required()
 });
 

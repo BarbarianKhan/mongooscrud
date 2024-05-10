@@ -24,12 +24,12 @@ const clientSchema = new mongoose.Schema({
         required:true,
     },
     phoneNumber:{
-        type:String,
+        type:Number,
         required:true,
     },
     user_id:{
         type:ObjectId,
-        required:true,
+        required:false,
     }
 });
 

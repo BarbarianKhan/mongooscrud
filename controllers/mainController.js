@@ -14,13 +14,15 @@ class MainController
             let result = await data.save();
             res.send(result);
         } catch (error) {
-            res.status(500).json({ error: 'Failed to get users' });
+            res.status(500).json({ error:error });
         }
     };
 
     createClient = async (req,res)=>{
         try {
-            let result= UserService.createUser(req,res);
+            let data = new Client(req.body);
+            let result = await data.save();
+
             res.send(result);
 
         } catch (error) {
@@ -34,7 +36,7 @@ class MainController
                 let result = await data.save();
                 res.send(result);
         } catch (error) {
-            res.status(500).json({ error: 'Failed to get users' });
+            res.status(500).json({ error: error });
         }
     };
 
@@ -44,7 +46,7 @@ class MainController
             let result = await data.save();
             res.send(result);
         } catch (error) {
-            res.status(500).json({ error: 'Failed to get users' });
+            res.status(500).json({ error:error });
         }
     };
     showOrder = async (req,res)=>{
@@ -52,7 +54,7 @@ class MainController
             let result = await Order.findOne(req.params).exec();
             res.send(result);
         } catch (error) {
-            res.status(500).json({ error: 'Failed to get users' });
+            res.status(500).json({ error: error });
         }
     };
 
@@ -64,7 +66,7 @@ class MainController
             );  
             res.send(data);
         } catch (error) {
-            res.status(500).json({ error: 'Failed to get users' });
+            res.status(500).json({ error: error });
         }
     };
 
@@ -73,7 +75,7 @@ class MainController
             let data = await User.find();
             res.send(data);
         } catch (error) {
-            res.status(500).json({ error: 'Failed to get users' });
+            res.status(500).json({ error: error });
         }
     };
 
@@ -82,7 +84,7 @@ class MainController
             let data = await User.deleteOne(req.params);
             res.send(data);
         } catch (error) {
-            res.status(500).json({ error: 'Failed to get users' });
+            res.status(500).json({ error: error });
         }
     };
 
@@ -94,7 +96,7 @@ class MainController
             );  
             res.send(data);
         } catch (error) {
-            res.status(500).json({ error: 'Failed to get users' });
+            res.status(500).json({ error: error });
         }
     };
 
@@ -106,7 +108,7 @@ class MainController
             );  
             res.send(data);
         } catch (error) {
-            res.status(500).json({ error: 'Failed to get users' });
+            res.status(500).json({ error: error });
         }
     };
     updateAll = async (req,res)=>{
@@ -114,7 +116,7 @@ class MainController
             let data =await User.updateMany([{$set:req.body}]);  
                 res.send(data);
         } catch (error) {
-            res.status(500).json({ error: 'Failed to get users' });
+            res.status(500).json({ error: error });
         }
     };
     search = async (req,res)=>{
@@ -131,7 +133,7 @@ class MainController
             );
             res.send(data);
         } catch (error) {
-            res.status(500).json({ error: 'Failed to get users' });
+            res.status(500).json({ error: error });
         }
     };
 
@@ -141,15 +143,13 @@ class MainController
 
         // Email options
         const mailOptions = {
-            from: 'your_email@example.com', // Your email address
+            from: 'my_email@example.com', // Your email address
             to: 'your_email@example.com',                         // Recipient's email address
             subject: 'Express Delivery Email subject',               // Email subject
-            html: '<p>Text</p>',                     // Email content (text version)
+            html: '<h1>A Quick Brownn Fox Jumps Over the Lazy Dog.</h1>',    // Email content (text version)
             // You can also use `html` property to send an HTML-formatted email content
         };
-
         // Send the email
-        
         transporter.sendMail(mailOptions, (error, info) => {
             if (error) {
             console.log('Error sending email:', error);

@@ -21,13 +21,7 @@ const loyalPointValidator = Joi.object({
                                             }),
     expiry_date: Joi.date().greater(new Date("1940-01-01")).required().messages({
                                               'any.required': 'Expiry Date is required'
-                                            }),
-    phoneNumber: Joi.string()
-      .length(10)
-      .pattern(/[0-9]{1}[0-9]{9}/)
-      .required().messages({
-        'any.required': 'Phone Number is required'
-      })
+                                            })
   });
 
 module.exports = loyalPointValidator;

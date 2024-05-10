@@ -10,9 +10,9 @@ const GOTController = require('./controllers/gotController');
 
 const loyalPointValidator = require('./validations/loyalty-points-validations');
 const ClientValidation = require('./validations/clientValidations');
-const ProductValidation = require('./validations/clientValidations');
-const OrderValidation = require('./validations/clientValidations');
-const UserValidation = require('./validations/clientValidations');
+const ProductValidation = require('./validations/productValidations');
+const OrderValidation = require('./validations/ordersValidations');
+const UserValidation = require('./validations/userValidations');
 const loginValidation = require('./validations/loginValidation');
 
 routes.post('/createUser',validateData(UserValidation),MainController.createUser);
@@ -23,6 +23,7 @@ routes.post('/addLoyaltyPoints',validateData(loyalPointValidator),OrderControlle
 
 routes.get('/showOrder/:orderID',MainController.showOrder);
 routes.patch('/updateOrder/:orderID',MainController.updateOrder);
+routes.put('/updateShippingAddress/:orderID',OrderController.updateShippingAddress);
 routes.get('/list',authMiddleware,MainController.usersList);
 routes.delete('/deleteUser/:name',MainController.deleteUser);
 routes.put('/updateUser/:name',MainController.updateUser);
@@ -43,7 +44,6 @@ routes.post("/uploadFile",OrderController.FileUpload,(req,res)=>{
 routes.post('/login',validateData(loginValidation),AuthController.userLogin);
 routes.post('/logout',AuthController.logout);
 
-routes.put('/updateShippingAddress/:orderID',OrderController.updateShippingAddress);
 
 routes.get('/accessResource', (req, res)=>{  
     const token = req.headers.authorization.split(' ')[1]; 
@@ -59,13 +59,13 @@ routes.get('/accessResource', (req, res)=>{
                         data:{
                             userId:decodedToken.userId,
                             email:decodedToken
-                        }}
-                        );   
-                    });
+                        }});   
+    });
 
 routes.get('/getSeasons',GOTController.getSeasons);
 
 routes.get('/sendMail',MainController.sendEmailUser);
 
+routes.get('/getAllStarks',GOTController.getAllStarks);
 
 module.exports = routes; 

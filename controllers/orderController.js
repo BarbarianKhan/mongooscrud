@@ -29,7 +29,7 @@ class OrderController{
             },
             {
                 $addFields: {
-                clientDetails: { $arrayElemAt: ["$clientDetails", 0] }
+                clientDetails: { $arrayElemAt: ["$clientDetails",0]}
                 }
             });
 
@@ -169,16 +169,15 @@ class OrderController{
     };
 
     FileUpload = multer({
-        storage:multer.diskStorage({
-            destination:function(req,file,cb){
-                cb(null,"uploads")
-            },
-            filename:function(req,file,cb){
-                cb(null,file.fieldname+"-"+Date.now()+".jpg");
-            }
-
-        })
-    }).single('user_file');
+                        storage:multer.diskStorage({
+                            destination:function(req,file,cb){
+                                cb(null,"uploads")
+                            },
+                            filename:function(req,file,cb){
+                                cb(null,file.fieldname+"-"+Date.now()+".jpg");
+                            }
+                        })
+                    }).single('user_file');
 
     addLoyaltyPoints = async (req,res)=>{
             try {
@@ -193,7 +192,12 @@ class OrderController{
     updateShippingAddress  = async (req,res)=>{
         let result = await Order.updateOne(
                                         req.params,
-                                        { $set: { "shippingAddress.street": "123 main street" } }
+                                        { $set: { 
+                                            "shippingAddress.street": req.body.shippingAddress.street,
+                                            "shippingAddress.city": req.body.shippingAddress.city,
+                                            "shippingAddress.state": req.body.shippingAddress.state,
+                                            "shippingAddress.country": req.body.shippingAddress.country,
+                                            "shippingAddress.zip_code": req.body.shippingAddress.zip_code }}
                                     );
             res.send(result);
     }
